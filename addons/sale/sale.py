@@ -1206,7 +1206,8 @@ class sale_order_line(osv.osv):
 
                 warning_msgs += _("No valid pricelist line found ! :") + warn_msg +"\n\n"
             else:
-                price = self.pool['account.tax']._fix_tax_included_price(cr, uid, price, taxes, result['tax_id'])
+                # FIXME: Disabled "[FIX]account: included taxes #8205" causing tax deducted 2 times [Lennart 1200wd, dec-2015]
+                # price = self.pool['account.tax']._fix_tax_included_price(cr, uid, price, taxes, result['tax_id'])
                 result.update({'price_unit': price})
                 if context.get('uom_qty_change', False):
                     values = {'price_unit': price}
