@@ -20,7 +20,7 @@ openerp.account = function (instance) {
         init: function(parent, context) {
             this._super(parent);
             // Number of reconciliations loaded initially and by clicking 'show more'
-            this.num_reconciliations_fetched_in_batch = 10;
+            this.num_reconciliations_fetched_in_batch = 50;
             if (context.context.statement_id) this.statement_ids = [context.context.statement_id];
             if (context.context.statement_ids) this.statement_ids = context.context.statement_ids;
             this.single_statement = this.statement_ids !== undefined && this.statement_ids.length === 1;
