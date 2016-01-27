@@ -1622,7 +1622,13 @@ class product_product(osv.Model):
         if isinstance(ids, (int, long)):
             ids = [ids]
         result = self.pool['product.template']._get_act_window_dict(cr, uid, 'purchase.action_purchase_line_product_tree', context=context)
-        result['domain'] = "[('product_id','in',[" + ','.join(map(str, ids)) + "])]"
+
+        if len(ids) == 1:
+            result['context'] = "{'default_product_id': " + str(ids) + ", 'search_default_product_id': " + str(ids) + "}"
+        else:
+            result['domain'] = "[('product_id','in',[" + ','.join(map(str, ids)) + "])]"
+            result['context'] = "{}"
+
         return result
 
     _columns = {
